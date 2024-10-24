@@ -3,8 +3,8 @@ import io
 import keras
 import numpy as np
 import streamlit as st
-from PIL.Image import Image
 from keras import Model
+from PIL import Image
 
 MODEL_PATH = "model_vit.keras"
 
@@ -53,7 +53,7 @@ if img_file_buffer is not None:
 
     img = Image.open(io.BytesIO(bytes_data))
     img = img.convert('RGB')
-    img = img.resize((224, 224), Image.NEAREST)
+    img = img.resize((224, 224))
     input_arr = keras.utils.img_to_array(img)
     image_batch = np.array([input_arr])
 
