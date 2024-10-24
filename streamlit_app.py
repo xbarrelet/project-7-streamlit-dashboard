@@ -36,20 +36,24 @@ CACHED_RACES = {41: 'english_springer', 17: 'border_terrier', 33: 'collie', 52: 
                 25: 'bull_mastiff', 16: 'border_collie', 117: 'whippet', 96: 'scotch_terrier', 24: 'brittany_spaniel',
                 47: 'german_short-haired_pointer', 61: 'japanese_spaniel'}
 
+st.set_page_config(layout='wide')
+
 st.title("Dashboard")
 st.write("Ce dashboard permet de tester la prédiction de la race de chien de l'image téléversée.")
 
-with st.expander("Exploration du jeu de données"):
-    st.write("Voici le nombre d'images par race de chien avec leur moyenne:")
-    st.image("images/images_count_per_race.png", caption="Nombre d'images par race de chien")
+with st.container():
 
-    st.write("Voici les dimensions des images:")
-    st.image("images/images_dimensions.png", caption="Dimensions des images")
+    with st.expander("Exploration du jeu de données"):
+        st.write("Voici le nombre d'images par race de chien avec leur moyenne:")
+        st.image("images/images_count_per_race.png", caption="Nombre d'images par race de chien")
 
-    st.write('Voici quelques images du set de données originale puis après recadrement et redimensionnement.')
-    st.image("images/example_1.png")
-    st.image("images/example_2.png")
-    st.image("images/example_3.png")
+        st.write("Voici les dimensions des images:")
+        st.image("images/images_dimensions.png", caption="Dimensions des images")
+
+        st.write('Voici quelques images du set de données originale puis après recadrement et redimensionnement.')
+        st.image("images/example_1.png", caption="Premier exemple")
+        st.image("images/example_2.png", caption="Deuxième exemple")
+        st.image("images/example_3.png", caption="Troisième exemple")
 
 model: Model = keras.models.load_model(MODEL_PATH, compile=False)
 
