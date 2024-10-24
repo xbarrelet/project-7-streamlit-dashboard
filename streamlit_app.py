@@ -40,8 +40,16 @@ st.title("Dashboard")
 st.write("Ce dashboard permet de tester la prédiction de la race de chien de l'image téléversée.")
 
 with st.expander("Exploration du jeu de données"):
+    st.write("Voici le nombre d'images par race de chien avec leur moyenne:")
+    st.image("images/images_count_per_race.png", caption="Nombre d'images par race de chien")
+
+    st.write("Voici les dimensions des images:")
+    st.image("images/images_dimensions.png", caption="Dimensions des images")
+
     st.write('Voici quelques images du set de données originale puis après recadrement et redimensionnement.')
-    st.image("https://static.streamlit.io/examples/dice.jpg")
+    st.image("images/example_1.png")
+    st.image("images/example_2.png")
+    st.image("images/example_3.png")
 
 model: Model = keras.models.load_model(MODEL_PATH, compile=False)
 
