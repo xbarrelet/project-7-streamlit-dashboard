@@ -36,10 +36,8 @@ CACHED_RACES = {41: 'english_springer', 17: 'border_terrier', 33: 'collie', 52: 
                 25: 'bull_mastiff', 16: 'border_collie', 117: 'whippet', 96: 'scotch_terrier', 24: 'brittany_spaniel',
                 47: 'german_short-haired_pointer', 61: 'japanese_spaniel'}
 
-st.set_page_config(layout='wide')
-
+st.set_page_config(layout='wide', page_title="Dashboard de prédictions")
 st.title("Dashboard de prédictions")
-st.set_page_config(page_title="Dashboard de prédictions")
 
 st.write("Ce dashboard permet de tester la prédiction de la race de chien de l'image téléversée.")
 
