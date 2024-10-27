@@ -3,8 +3,8 @@ import io
 import keras
 import numpy as np
 import streamlit as st
-from keras import Model
 from PIL import Image
+from keras import Model
 
 MODEL_PATH = "model_vit.keras"
 
@@ -38,11 +38,12 @@ CACHED_RACES = {41: 'english_springer', 17: 'border_terrier', 33: 'collie', 52: 
 
 st.set_page_config(layout='wide')
 
-st.title("Dashboard")
+st.title("Dashboard de prédictions")
+st.set_page_config(page_title="Dashboard de prédictions")
+
 st.write("Ce dashboard permet de tester la prédiction de la race de chien de l'image téléversée.")
 
 with st.container():
-
     with st.expander("Exploration du jeu de données"):
         st.write("Voici le nombre d'images par race de chien avec leur moyenne:")
         st.image("images/images_count_per_race.png", caption="Nombre d'images par race de chien")
@@ -60,7 +61,6 @@ model: Model = keras.models.load_model(MODEL_PATH, compile=False)
 img_file_buffer = st.file_uploader("Téléversez une image du set de données", type=["png", "jpg", "jpeg"])
 
 if img_file_buffer is not None:
-    # To read file as bytes:
     bytes_data = img_file_buffer.getvalue()
 
     img = Image.open(io.BytesIO(bytes_data))
