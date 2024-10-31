@@ -5,6 +5,8 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 from keras import Model
+import plotly.io as pio
+from streamlit import caption
 
 MODEL_PATH = "model_vit.keras"
 
@@ -46,15 +48,22 @@ st.write("Ce dashboard permet de tester la prédiction de la race de chien de l'
 with st.container():
     with st.expander("Exploration du jeu de données"):
         st.write("Voici le nombre d'images par race de chien avec leur moyenne:")
-        st.image("images/images_count_per_race.png", caption="Nombre d'images par race de chien")
 
-        st.write("Voici les dimensions des images:")
-        st.image("images/images_dimensions.png", caption="Dimensions des images")
+        with open(f"images/images_count_per_race.json", "r") as f:
+            images_count_per_label_html_plot = f.read()
+        st.plotly_chart(pio.from_json(images_count_per_label_html_plot), caption="Nombre d'images par race de chien")
+
+        st.write("Voici les dimensions des images (hauteur moyenne=301, largeur moyenne=284):")
+
+        with open(f"images/images_dimensions.json", "r") as f:
+            images_dimensions_json_plot = f.read()
+        st.plotly_chart(pio.from_json(images_dimensions_json_plot), caption="Dimensions des images")
 
         st.write('Voici quelques images du set de données originale puis après recadrement et redimensionnement.')
         st.image("images/example_1.png", caption="Premier exemple")
         st.image("images/example_2.png", caption="Deuxième exemple")
         st.image("images/example_3.png", caption="Troisième exemple")
+        st.image("images/example_4.png", caption="Quatrième exemple")
 
 model: Model = keras.models.load_model(MODEL_PATH, compile=False)
 
