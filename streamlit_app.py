@@ -65,7 +65,7 @@ if img_file_buffer is not None:
 
     img = Image.open(io.BytesIO(bytes_data))
     img = img.convert('RGB')
-    img = img.resize((224, 224))
+    img = img.resize((300, 300))
     input_arr = keras.utils.img_to_array(img)
     image_batch = np.array([input_arr])
 
